@@ -137,7 +137,7 @@ impl Terminal {
 
             for event in events.iter() {
                 match event.key {
-                    PTY_CHILD_EVENT_TOKEN => {
+                    _PTY_CHILD_EVENT_TOKEN => {
                         if let Some(tty::ChildEvent::Exited(exited_code)) =
                             self.pty.next_child_event()
                         {
@@ -149,7 +149,7 @@ impl Terminal {
                         }
                     }
 
-                    PTY_READ_WRITE_TOKEN => {
+                    _PTY_READ_WRITE_TOKEN => {
                         if event.is_interrupt() {
                             // Don't try to do I/O on a dead PTY.
                             continue;
