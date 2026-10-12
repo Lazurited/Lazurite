@@ -725,8 +725,6 @@ checksum = "37b2a672a2cb129a2e41c10b1224bb368f9f37a2b16b612598138befd7b37eb5"
 [[package]]
 name = "cc"
 version = "1.0.99"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "96c51067fd44124faa7f870b4b1c969379ad32b2ba805aa959430ceaa384f695"
 dependencies = [
  "jobserver",
  "libc",
@@ -5901,8 +5899,6 @@ dependencies = [
 [[package]]
 name = "trash"
 version = "3.0.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "af3663fb8f476d674b9c61d1d2796acec725bef6bec4b41402a904252a25971e"
 dependencies = [
  "chrono",
  "libc",

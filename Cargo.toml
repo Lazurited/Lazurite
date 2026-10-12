@@ -89,6 +89,9 @@ rev = "31fa8f444c37f4c314f47d88c23ffdbc25f2ab53"
 features = ["serde"]
 
 [patch.crates-io]
+# Lazurite: Android/Termux patches
+trash = { path = "vendor/trash-3.0.6" }
+cc    = { path = "vendor/cc-1.0.99" }
 # Temporarily patch lsp-types with a version that adds message-type debug
 lsp-types = { git = "https://github.com/lapce/lsp-types", rev = "feaa1e2ec80975c9dadd400a238ceacf071058e6" }
 regalloc2 = { rev = "5d79e12d0a93b10fc181f4da409b4671dd365228", git = "https://github.com/bytecodealliance/regalloc2" }
@@ -144,3 +147,4 @@ opt-level = 3
 
 [profile.fastdev]
 inherits = "dev"
+
