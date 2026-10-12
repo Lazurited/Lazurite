@@ -1,0 +1,29 @@
+Lazurite
+Copyright 2026 The Lazurited
+
+This product includes software developed by the Lapce project
+(https://github.com/lapce/lapce), licensed under the Apache License,
+Version 2.0.
+
+Lapce is Copyright 2022 Dongdong Zhou and other Lapce contributors.
+Lazurite is an independent derivative work. It is not affiliated with,
+endorsed by, or sponsored by the Lapce project or its maintainers.
+
+--------------------------------------------------------------------------
+Significant changes from upstream Lapce, as of this NOTICE:
+
+  - Flattened the upstream source tree into the repository root.
+    Upstream files are otherwise unmodified at this time.
+
+Additional changes will be recorded here as the Android port progresses,
+including:
+
+  - Android platform integration (Kotlin client, NDK build pipeline).
+  - Cross-compilation of lapce-proxy for aarch64-linux-android.
+  - Bundled Linux userland for on-device tooling.
+
+--------------------------------------------------------------------------
+Lapce upstream license:
+
+  Licensed under the Apache License, Version 2.0.
+  See LICENSE for the full license text.
