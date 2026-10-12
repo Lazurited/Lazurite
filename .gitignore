@@ -12,3 +12,11 @@ vendor/
 *.patch
 *.tar
 *.gz
+
+# Keep Android patches tracked
+!vendor/
+vendor/*
+!vendor/trash-3.0.6
+!vendor/cc-1.0.99
+!vendor/trash-3.0.6/
+!vendor/cc-1.0.99/
