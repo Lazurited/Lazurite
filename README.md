@@ -59,7 +59,7 @@ Features marked `[planned]` are planned for the Android build.
 - `[done]` **Remote development** — connect to a remote Lapce proxy over SSH
 - `[planned]` **Native Floem UI on Android** — via the `floem-winit-android` backend
 - `[planned]` **Vulkan + GLES 3.x rendering** — dual-backend through `wgpu`
-- `[planned]` **Bundled Linux userland** — `git`, `rust-analyzer`, `node`, `go`, shells
+- `[planned]` **Embedded terminal via libghostty-vt** — zero-dependency VT parsing, no full Linux userland required
 - `[planned]` **Hardware keyboard + trackpad support**
 - `[planned]` **Custom IME** for soft-keyboard input
 - `[planned]` **SAF file picker integration** for external storage
@@ -74,8 +74,8 @@ Features marked `[planned]` are planned for the Android build.
 
 When ready, releases will be published on the
 [Releases page](https://github.com/Lazurited/lazurite/releases) as signed
-APKs. Distribution will be **sideload-only** — Google Play does not permit
-the `execve` patterns a bundled userland requires.
+APKs. Distribution will be **sideload-only**, since the backend runs
+subprocesses that Google Play does not permit.
 
 For build-from-source instructions, see
 [`docs/building.md`](docs/building.md).
@@ -89,8 +89,8 @@ path. Contributions are welcome in three areas:
 
 1. **`floem-android`** — the UI backend for Android. This is the critical
    path and the least explored.
-2. **Userland packaging** — Termux-derived rootfs, adapter modes (bootstrap,
-   chroot, external Termux).
+2. **Terminal integration** — binding `libghostty-vt` into Floem's widget
+   tree and wiring the PTY layer.
 3. **Android platform integration** — SAF, clipboard, IME, notifications,
    lifecycle.
 
@@ -106,9 +106,10 @@ significant work, open an issue first so we can discuss the approach.
   Lazurite would not exist without it.
 - **[Floem](https://github.com/lapce/floem)** — for the reactive UI
   framework that makes porting Lapce feasible in the first place.
-- **[Termux](https://github.com/termux)** — for proving that a full Linux
-  userland can live inside an Android app, and for `termux-packages`,
-  which is the reference for every `-sys` workaround Lazurite uses.
+- **[Ghostty](https://github.com/ghostty-org/ghostty)** — for `libghostty-vt`,
+  the zero-dependency terminal emulation library that powers Lazurite's
+  embedded terminal. Mitchell Hashimoto's vision of an embeddable terminal
+  core is exactly what a mobile IDE needs.
 - **[Zdroid](https://github.com/Dylanmurzello/zed-android-port)** — for
   demonstrating that a GPU-accelerated Rust editor can run natively on
   Android. Several of Lazurite's platform decisions follow their lead.
@@ -122,6 +123,7 @@ significant work, open an issue first so we can discuss the approach.
 Lazurite is a derivative work of Lapce.
 
 ```
+
 Lapce
 Copyright 2022 Dongdong Zhou and other Lapce contributors
 Licensed under the Apache License, Version 2.0
@@ -129,6 +131,7 @@ Licensed under the Apache License, Version 2.0
 Lazurite
 Copyright 2026 The Lazurite Contributors
 Licensed under the Apache License, Version 2.0
+
 ```
 
 Lazurite is **not affiliated with, endorsed by, or sponsored by** the Lapce
