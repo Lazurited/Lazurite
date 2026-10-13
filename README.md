@@ -1,55 +1,151 @@
 <h1 align="center">
-  <a href="https://lapce.dev" target="_blank">
   <img src="extra/images/logo.png" width=200 height=200/><br>
-  Lapce
-  </a>
+  Lazurite
 </h1>
 
-<h4 align="center">Lightning-fast And Powerful Code Editor</h4>
+<h4 align="center">A pocket IDE. Lapce, rebuilt for Android.</h4>
 
 <div align="center">
-  <a href="https://github.com/lapce/lapce/actions/workflows/ci.yml" target="_blank">
-    <img src="https://github.com/lapce/lapce/actions/workflows/ci.yml/badge.svg" />
+  <a href="https://github.com/Lazurited/lazurite/actions/workflows/ci.yml" target="_blank">
+    <img src="https://github.com/Lazurited/lazurite/actions/workflows/ci.yml/badge.svg" />
   </a>
-  <a href="https://discord.gg/n8tGJ6Rn6D" target="_blank">
-    <img src="https://img.shields.io/discord/946858761413328946?logo=discord" />
-  </a>
-  <a href="https://docs.lapce.dev" target="_blank">
-      <img src="https://img.shields.io/static/v1?label=Docs&message=docs.lapce.dev&color=blue" alt="Lapce Docs">
-  </a>
+  <img src="https://img.shields.io/badge/status-pre--alpha-orange" />
+  <img src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+  <img src="https://img.shields.io/badge/platform-Android%209%2B-green" />
 </div>
 <br/>
 
+Lazurite is an Android port of [Lapce](https://github.com/lapce/lapce), the
+lightning-fast code editor written in pure Rust. It keeps Lapce's Rust core
+intact and pairs it with a native Android port of
+[Floem](https://github.com/lapce/floem), Lapce's UI framework.
 
-Lapce (IPA: /læps/) is written in pure Rust, with a UI in [Floem](https://github.com/lapce/floem). It is designed with [Rope Science](https://xi-editor.io/docs/rope_science_00.html) from the [Xi-Editor](https://github.com/xi-editor/xi-editor), enabling lightning-fast computation, and leverages [wgpu](https://github.com/gfx-rs/wgpu) for rendering. More information about the features of Lapce can be found on the [main website](https://lapce.dev) and user documentation can be found on [GitBook](https://docs.lapce.dev/).
+The name comes from *lazurite* — the mineral that gives lapis lazuli its
+deep blue. A small nod to the project it grew out of.
 
-![](https://github.com/lapce/lapce/blob/master/extra/images/screenshot.png?raw=true)
+---
+
+## Why Lazurite
+
+Android has no shortage of text editors. What it lacks is a **real IDE** —
+one with LSP, a project tree, a terminal, and the same editing engine you'd
+use on a desktop. Most Android "IDEs" are either web wrappers around a remote
+server, or toy editors with no extension model.
+
+Lazurite takes a different approach:
+
+- **Native, not web.** No Electron, no WebView, no browser engine. The UI is
+  Floem, rendering through `wgpu` directly to Vulkan or GLES 3.x.
+- **The real Lapce core.** Tree-sitter highlighting, the same Rope Science
+  text engine, the same LSP integration, the same plugin model. Not a
+  reimplementation.
+- **Built for hardware keyboards.** A tablet with a keyboard case is a
+  workstation. Lazurite treats it like one — pointer capture, IME bridging,
+  and a trackpad path that doesn't lose motion samples.
+- **Permissive license.** Lapce is Apache-2.0. Unlike some editor ports,
+  Lazurite can be forked, extended, and shipped without copyleft strings.
+
+---
 
 ## Features
 
-* Built-in LSP ([Language Server Protocol](https://microsoft.github.io/language-server-protocol/)) support to give you intelligent code features such as: completion, diagnostics and code actions
-* Modal editing support as first class citizen (Vim-like, and toggleable)
-* Built-in remote development support inspired by [VSCode Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). Enjoy the benefits of a "local" experience, and seamlessly gain the full power of a remote system. We also have [Lapdev](https://lap.dev/) which can help manage your remote dev environments. 
-* Plugins can be written in programming languages that can compile to the [WASI](https://wasi.dev/) format (C, Rust, [AssemblyScript](https://www.assemblyscript.org/))
-* Built-in terminal, so you can execute commands in your workspace, without leaving Lapce.
+Features marked `[done]` are inherited from Lapce and work today on desktop.
+Features marked `[planned]` are planned for the Android build.
 
-## Installation
+- `[done]` **Built-in LSP support** — completion, diagnostics, code actions
+- `[done]` **Modal editing** — Vim-like, toggleable, first-class
+- `[done]` **Tree-sitter syntax highlighting** — for every language Lapce supports
+- `[done]` **WASI plugin system** — write plugins in C, Rust, or AssemblyScript
+- `[done]` **Remote development** — connect to a remote Lapce proxy over SSH
+- `[planned]` **Native Floem UI on Android** — via the `floem-winit-android` backend
+- `[planned]` **Vulkan + GLES 3.x rendering** — dual-backend through `wgpu`
+- `[planned]` **Bundled Linux userland** — `git`, `rust-analyzer`, `node`, `go`, shells
+- `[planned]` **Hardware keyboard + trackpad support**
+- `[planned]` **Custom IME** for soft-keyboard input
+- `[planned]` **SAF file picker integration** for external storage
 
-You can find pre-built releases for Windows, Linux and macOS [here](https://github.com/lapce/lapce/releases), or [installing with a package manager](docs/installing-with-package-manager.md).
-If you'd like to compile from source, you can find the [guide](docs/building-from-source.md).
+---
+
+## Download
+
+> **Status: pre-alpha.** There is no installable APK yet. The
+> `lazurite-proxy` backend compiles and runs on `aarch64-linux-android`,
+> but the Floem Android UI is still in development.
+
+When ready, releases will be published on the
+[Releases page](https://github.com/Lazurited/lazurite/releases) as signed
+APKs. Distribution will be **sideload-only** — Google Play does not permit
+the `execve` patterns a bundled userland requires.
+
+For build-from-source instructions, see
+[`docs/building.md`](docs/building.md).
+
+---
 
 ## Contributing
 
-Guidelines for contributing to Lapce can be found in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Lazurite is a fork of Lapce with a deliberate divergence: the Android build
+path. Contributions are welcome in three areas:
 
-## Feedback & Contact
+1. **`floem-android`** — the UI backend for Android. This is the critical
+   path and the least explored.
+2. **Userland packaging** — Termux-derived rootfs, adapter modes (bootstrap,
+   chroot, external Termux).
+3. **Android platform integration** — SAF, clipboard, IME, notifications,
+   lifecycle.
 
-The most popular place for Lapce developers and users is on the [Discord server](https://discord.gg/n8tGJ6Rn6D).
+Before opening a PR, read [`CONTRIBUTING.md`](CONTRIBUTING.md). For
+significant work, open an issue first so we can discuss the approach.
 
-Or, join the discussion on [Reddit](https://www.reddit.com/r/lapce/) where we are just getting started.
+---
 
-There is also a [Matrix Space](https://matrix.to/#/#lapce-editor:matrix.org), which is linked to the content from the Discord server.
+## Special Thanks
+
+- **[Lapce](https://github.com/lapce/lapce)** — for the editor, the Rope
+  engine, the LSP integration, and the choice of an Apache-2.0 license.
+  Lazurite would not exist without it.
+- **[Floem](https://github.com/lapce/floem)** — for the reactive UI
+  framework that makes porting Lapce feasible in the first place.
+- **[Termux](https://github.com/termux)** — for proving that a full Linux
+  userland can live inside an Android app, and for `termux-packages`,
+  which is the reference for every `-sys` workaround Lazurite uses.
+- **[Zdroid](https://github.com/Dylanmurzello/zed-android-port)** — for
+  demonstrating that a GPU-accelerated Rust editor can run natively on
+  Android. Several of Lazurite's platform decisions follow their lead.
+- **[winit](https://github.com/rust-windowing/winit)** — for the
+  `winit-android` backend that the Lapce fork carries forward.
+
+---
+
+## Credits
+
+Lazurite is a derivative work of Lapce.
+
+```
+
+Lapce
+Copyright 2022 Dongdong Zhou and other Lapce contributors
+Licensed under the Apache License, Version 2.0
+
+Lazurite
+Copyright 2026 The Lazurite Contributors
+Licensed under the Apache License, Version 2.0
+
+```
+
+Lazurite is **not affiliated with, endorsed by, or sponsored by** the Lapce
+project or its maintainers. See [`NOTICE`](NOTICE) for full upstream
+attribution and the list of significant changes.
+
+---
 
 ## License
 
-Lapce is released under the Apache License Version 2, which is an open source license. You may contribute to this project, or use the code as you please as long as you adhere to its conditions. You can find a copy of the license text here: [`LICENSE`](LICENSE).
+Lazurite is released under the Apache License, Version 2.0 — the same
+license as Lapce. You may use, modify, and redistribute the code under the
+terms of that license. A copy of the text is included in
+[`LICENSE`](LICENSE).
+
+---
+
+<p align="center"><em>Code anywhere. Even here.</em></p>
