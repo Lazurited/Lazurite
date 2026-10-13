@@ -123,7 +123,6 @@ significant work, open an issue first so we can discuss the approach.
 Lazurite is a derivative work of Lapce.
 
 ```
-
 Lapce
 Copyright 2022 Dongdong Zhou and other Lapce contributors
 Licensed under the Apache License, Version 2.0
@@ -131,7 +130,6 @@ Licensed under the Apache License, Version 2.0
 Lazurite
 Copyright 2026 The Lazurite Contributors
 Licensed under the Apache License, Version 2.0
-
 ```
 
 Lazurite is **not affiliated with, endorsed by, or sponsored by** the Lapce
